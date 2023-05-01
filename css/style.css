@@ -1,0 +1,162 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "League Spartan", sans-serif;
+}
+
+.header-img {
+  height: 150px;
+  background-image: url("/src/images/bg-header-mobile.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+  background-color: hsl(180, 52%, 96%);
+  color: hsl(180, 29%, 50%);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.filterBy {
+  display: none;
+  font-size: 17px;
+  font-weight: 700;
+  gap: 10px;
+  background-color: white;
+  width: auto;
+  margin: 50px 30px;
+  padding: 10px;
+}
+.filterBy .filter-tag {
+  background-color: hsl(204, 45%, 96%);
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.filterBy span {
+  margin: 0px 8px;
+}
+.filterBy button {
+  color: white;
+  background-color: hsl(180, 29%, 50%);
+  border: none;
+  font-size: 2em;
+  padding: 0px 8px;
+  border-radius: 0px 5px 5px 0px;
+  align-items: center;
+}
+
+.jobPosting {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 5px 30px -10px gray;
+  width: auto;
+  margin: 50px 30px;
+  padding: 10px;
+  position: relative;
+}
+.jobPosting hr {
+  margin-bottom: 10px;
+}
+.jobPosting .companyLogo {
+  position: absolute;
+  top: -35px;
+  width: 4.2em;
+}
+
+.jobPostingTitle {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.jobPostingTitle .company {
+  margin-right: 20px;
+  font-size: 18px;
+}
+.jobPostingTitle span {
+  border-radius: 20px;
+  padding: 0px 6px;
+}
+.jobPostingTitle .new {
+  padding: 3px 10px;
+  color: hsl(180, 31%, 95%);
+  background-color: hsl(180, 8%, 52%);
+}
+.jobPostingTitle .featured {
+  padding: 3px 10px;
+  color: hsl(180, 31%, 95%);
+  background-color: hsl(180, 14%, 20%);
+}
+
+.positionTitle {
+  margin-bottom: 10px;
+  color: hsl(180, 14%, 20%);
+  font-weight: 700;
+}
+
+.contractAndLocation {
+  display: flex;
+  margin-bottom: 10px;
+}
+.contractAndLocation :first-child {
+  list-style: none;
+}
+.contractAndLocation li {
+  margin-right: 20px;
+}
+
+.languagesAndToolsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.languagesAndToolsList button {
+  padding: 10px 5px;
+  color: hsl(180, 29%, 50%);
+  background-color: hsl(204, 45%, 96%);
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+}
+
+@media (min-width: 900px) {
+  .jobPosting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+  }
+  .jobPosting hr {
+    display: none;
+  }
+  .jobPosting .job_posting_logo_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .jobPosting .companyLogo {
+    top: 0px;
+    position: initial;
+    margin: 0 15px;
+    width: 5em;
+  }
+  .jobPosting .jobPostingInfo {
+    margin: 20px 0px 20px;
+  }
+  .jobPosting .jobPostingInfo .jobPostingTitle {
+    margin-top: initial;
+  }
+  .languagesAndToolsList {
+    position: relative;
+    right: 0px;
+  }
+}

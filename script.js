@@ -21,7 +21,7 @@ function reformatData(json, array) {
 let jobsData;
 let updatedPostings = [];
 async function getData() {
-  const response = await fetch("data.json");
+  const response = await fetch("./data.json");
   jobsData = await response.json();
 
   reformatData(jobsData, updatedPostings);
@@ -29,6 +29,7 @@ async function getData() {
 }
 
 const mainContainer = document.querySelector("main");
+const filterbyContainer = document.querySelector(".filterby-container");
 const filterBy = document.querySelector(".filterBy");
 
 // Function to populate and use json data
@@ -39,22 +40,28 @@ function populateJobs(json) {
     // Populate main with Job Posting Cards
     mainContainer.innerHTML += `
     <div class="jobPosting">
-      <img class="companyLogo" src="${json[i].logo}" alt="" />
-      <div class="jobPostingTitle">
-        <div class="company">${json[i].company}</div>
-        <div>
-          ${ifNewIsTrue(json)}
-          ${ifFeaturedIsTrue(json)}
+      <div class="job_posting_logo_info">
+        <img class="companyLogo" src="${json[i].logo}" alt="" />
+        
+        <div class="jobPostingInfo">
+          
+          <div class="jobPostingTitle">
+            <div class="company">${json[i].company}</div>
+            <div>
+              ${ifNewIsTrue(json)}
+              ${ifFeaturedIsTrue(json)}
+            </div>
+          </div>
+
+          <div class="positionTitle">${json[i].position}</div>
+          
+          <ul class="contractAndLocation">
+            <li>${json[i].postedAt}</li>
+            <li>${json[i].contract}</li>
+            <li>${json[i].location}</li>
+          </ul>
         </div>
       </div>
-
-      <div class="positionTitle">${json[i].position}</div>
-      
-      <ul class="contractAndLocation">
-        <li>${json[i].postedAt}</li>
-        <li>${json[i].contract}</li>
-        <li>${json[i].location}</li>
-      </ul>
 
       <hr />
 
@@ -93,6 +100,14 @@ function populateJobs(json) {
     }
   } // End of for loop
 
+  // For Each loop to add border-left to Job Posting Card
+  const jobPosting = document.querySelectorAll(".jobPosting");
+  jobPosting.forEach((job) => {
+    if (job.querySelector(".featured")) {
+      job.classList.add("active");
+    }
+  });
+
   // Add Filter to Search Criteria
   let addFilterButton = mainContainer.querySelectorAll("button");
   let filterValue;
@@ -102,7 +117,7 @@ function populateJobs(json) {
       filterValue = btn.innerHTML;
       console.log(filterValue);
 
-      filterBy.style.display = "flex";
+      filterbyContainer.style.display = "flex";
       filterBy.innerHTML += `
       <div class="filter-tag">
       <span>${filterValue}</span>
@@ -110,11 +125,8 @@ function populateJobs(json) {
       </div>`;
 
       selectedFilters.push(filterValue);
-      console.log(selectedFilters);
-      postsToDisplay = [];
-      onChangeFilter(updatedPostings, selectedFilters);
-      console.log(postsToDisplay);
-      populateJobs(postsToDisplay);
+
+      repopulatePostings();
     });
   });
 }
@@ -150,13 +162,31 @@ filterBy.addEventListener("click", function (e) {
     }
 
     if (selectedFilters.length === 0) {
-      filterBy.style.display = "none";
+      filterbyContainer.style.display = "none";
     }
 
-    console.log(selectedFilters);
-    postsToDisplay = [];
-    onChangeFilter(updatedPostings, selectedFilters);
-    console.log(postsToDisplay);
-    populateJobs(postsToDisplay);
+    repopulatePostings();
   }
 });
+
+// Clear all filters from Search Criteria
+const clearBtn = document.querySelector(".clear");
+
+clearBtn.addEventListener("click", function () {
+  selectedFilters = [];
+  filterBy.innerHTML = "";
+
+  if (selectedFilters.length === 0) {
+    filterbyContainer.style.display = "none";
+  }
+
+  repopulatePostings();
+});
+
+function repopulatePostings() {
+  console.log(selectedFilters);
+  postsToDisplay = [];
+  onChangeFilter(updatedPostings, selectedFilters);
+  console.log(postsToDisplay);
+  populateJobs(postsToDisplay);
+}

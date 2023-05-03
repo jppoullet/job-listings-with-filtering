@@ -9,7 +9,8 @@
 
 .header-img {
   height: 150px;
-  background-image: url("/src/images/bg-header-mobile.svg");
+  background-color: hsl(180, 29%, 50%);
+  background-image: url("/public/images/bg-header-mobile.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,17 +23,26 @@ body {
   font-weight: 500;
 }
 
-.filterBy {
+.filterby-container {
   display: none;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: -25px;
   font-size: 17px;
   font-weight: 700;
   gap: 10px;
   background-color: white;
   width: auto;
-  margin: 50px 30px;
-  padding: 10px;
+  margin: 0px 30px 50px;
+  padding: 10px 30px;
 }
-.filterBy .filter-tag {
+.filterby-container .filterBy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.filterby-container .filter-tag {
   background-color: hsl(204, 45%, 96%);
   border-radius: 5px;
   position: relative;
@@ -40,10 +50,10 @@ body {
   justify-content: flex-end;
   align-items: center;
 }
-.filterBy span {
+.filterby-container span {
   margin: 0px 8px;
 }
-.filterBy button {
+.filterby-container button {
   color: white;
   background-color: hsl(180, 29%, 50%);
   border: none;
@@ -51,6 +61,14 @@ body {
   padding: 0px 8px;
   border-radius: 0px 5px 5px 0px;
   align-items: center;
+  cursor: pointer;
+}
+.filterby-container button:hover {
+  background-color: hsl(180, 14%, 20%);
+}
+.filterby-container .clear:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .jobPosting {
@@ -69,6 +87,10 @@ body {
   position: absolute;
   top: -35px;
   width: 4.2em;
+}
+
+.active {
+  border-left: 6px solid hsl(180, 8%, 52%);
 }
 
 .jobPostingTitle {
@@ -126,14 +148,25 @@ body {
   font-weight: 700;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+}
+.languagesAndToolsList button:hover {
+  color: white;
+  background-color: hsl(180, 8%, 52%);
 }
 
 @media (min-width: 900px) {
+  .header-img {
+    height: 150px;
+    background-image: url("/public/images/bg-header-desktop.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .jobPosting {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
   }
   .jobPosting hr {
     display: none;

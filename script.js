@@ -21,7 +21,7 @@ function reformatData(json, array) {
 let jobsData;
 let updatedPostings = [];
 async function getData() {
-  const response = await fetch("./data.json");
+  const response = await fetch("data.json");
   jobsData = await response.json();
 
   reformatData(jobsData, updatedPostings);
